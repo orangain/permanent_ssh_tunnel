@@ -1,11 +1,11 @@
 permanent_ssh_tunnel
 ====================
 
-A [Fabric](http://fabfile.org) fabfile to setup a *permanent* SSH tunnel between two servers easily.
+A [Fabric](http://fabfile.org) task to setup a *permanent* SSH tunnel between two servers easily.
 
 ![nodes](https://raw.github.com/orangain/permanent_ssh_tunnel/master/doc/nodes.png)
 
-Prerequirements
+Pre-requirements
 ---------------
 
 * Client
@@ -35,3 +35,18 @@ $ . venv/bin/activate
 $ pip install -r requiements.txt
 $ fab setup:dbclient,dbserver,local_port=13306,remote_port=3306
 ```
+
+
+What the task do
+----------------
+
+- Client
+	- Create a user `autossh`
+	- Generate a private/public key pair
+	- Insert a server's entry into a known hosts file
+	- Install `autossh` package
+	- Create an Upstart service file
+	- Start the service
+- Server
+	- Create a user `autossh`
+	- Put the public key into an authorized key file
