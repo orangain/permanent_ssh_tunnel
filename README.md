@@ -1,7 +1,7 @@
 permanent_ssh_tunnel
 ====================
 
-A [Fabric](http://fabfile.org) task to setup a *permanent* SSH tunnel between two servers easily.
+A [Fabric](http://fabfile.org) task to setup a *permanent* [autossh](http://www.harding.motd.ca/autossh/) tunnel between two servers easily.
 
 ![nodes](https://raw.github.com/orangain/permanent_ssh_tunnel/master/doc/nodes.png)
 
