@@ -55,7 +55,7 @@ def client_create_service(local_port, remote_port, remote_host,
     with io.open(os.path.join(here, 'upstart_template.conf')) as f:
         content = f.read()
 
-    autossh_opts = '-nNT -o ExitOnForwardFailure=yes'
+    autossh_opts = '-nNT -o ExitOnForwardFailure=yes -o ConnectionAttempts=10'
 
     if direction == 'local':
         autossh_opts += ' -L'

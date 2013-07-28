@@ -55,7 +55,13 @@ test_tunnel
 # Reboot client
 vagrant reload client
 
-# Test that the tunnel is available even after rebooted
+# Test that the tunnel is available even after client is rebooted
+test_tunnel
+
+# Reboot server
+vagrant reload server
+
+# Test that the tunnel is available even after server is rebooted
 test_tunnel
 
 # Shutdown vms
