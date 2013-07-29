@@ -11,7 +11,7 @@ Pre-requirements
 * Client
     * OS is Ubuntu.
 * Server
-    * OS is Debian based.
+    * OS is Unix-based.
 * Workstation
 	* Can login to both client and server via SSH and login user can `sudo`.
 	* Python and virutalenv is installed.
