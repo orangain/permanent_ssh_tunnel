@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Simply execute './run.sh' in virtualenv
+# Simply run '../run.sh' in (precise64|centos6-64) directory inside virtualenv
 
 set -ex
 
@@ -39,7 +39,7 @@ test_tunnel() {
 }
 
 # Run doctests
-python -m doctest ../fabfile.py
+python -m doctest ../../fabfile.py
 
 # Bring up vms
 vagrant up
