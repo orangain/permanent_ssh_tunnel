@@ -100,7 +100,10 @@ def client_generate_pubkey(user):
     return pubkey
 
 def client_insert_known_host(user, home_dir, ssh_host, ssh_port):
-    host_key = run('ssh-keyscan %s 2>/dev/null' % ssh_host)
+    args = [ssh_host]
+    if ssh_port:
+        args = ['-p', ssh_port] + args
+    host_key = run('ssh-keyscan %s 2>/dev/null' % (' '.join(args)))
     assert host_key
 
     known_hosts_path = '%s/.ssh/known_hosts' % home_dir
