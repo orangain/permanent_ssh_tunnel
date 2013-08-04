@@ -67,7 +67,7 @@ def client_create_service(local_port, remote_port, remote_host,
     elif direction == 'remote':
         autossh_opts += ' -R'
     else:
-        raise Exception('Invalid direction')
+        raise ValueError('Invalid direction')
 
     autossh_opts += ' %s:%s:%s' % (local_port, remote_host, remote_port)
 
@@ -104,7 +104,8 @@ def client_insert_known_host(user, home_dir, ssh_host, ssh_port):
     if ssh_port:
         args = ['-p', ssh_port] + args
     host_key = run('ssh-keyscan %s 2>/dev/null' % (' '.join(args)))
-    assert host_key
+    if not host_key:
+        raise ValueError('Failed to scan host key')
 
     if ssh_port and not host_key.startswith('['):
         # Because ssh-keyscan does not contain port information,
