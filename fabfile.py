@@ -106,6 +106,14 @@ def client_insert_known_host(user, home_dir, ssh_host, ssh_port):
     host_key = run('ssh-keyscan %s 2>/dev/null' % (' '.join(args)))
     assert host_key
 
+    if ssh_port and not host_key.startswith('['):
+        # Because ssh-keyscan does not contain port information,
+        # host key verification fails when using non-standard port.
+        # So, manually add port information.
+        # Confirmed with "OpenSSH_5.9p1 Debian-5ubuntu1.1, OpenSSL 1.0.1 14 Mar 2012".
+        host_part, rest = host_key.split(' ', 1)
+        host_key = '[%s]:%s %s' % (host_part, ssh_port, rest)
+
     known_hosts_path = '%s/.ssh/known_hosts' % home_dir
 
     with mode_sudo():
